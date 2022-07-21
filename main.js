@@ -4,11 +4,15 @@ const renderer = new THREE.WebGLRenderer(); // crée le renderer
 renderer.setSize(window.innerWidth, window.innerHeight); // définit la taille du renderer
 document.body.appendChild(renderer.domElement);
 
+
+
 // console.log(renderer);
 
 // création d'un cube
 const geometry = new THREE.BoxGeometry(1, 1, 1);
-const material = new THREE.MeshBasicMaterial({ color: 2455555 });
+const material = new THREE.MeshBasicMaterial({
+    color: 'orange',
+});
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
 
@@ -38,4 +42,15 @@ document.addEventListener("mousedown", function() {
 
 document.addEventListener("mouseup", function() {
     start = undefined;
+})
+
+document.addEventListener("touchstart", function() {
+    start = true;
+})
+
+document.addEventListener("touchmove", function() {
+    if (start == true) {
+        cube.rotation.x += 0.05;
+        cube.rotation.y += 0.05;
+    }
 })
